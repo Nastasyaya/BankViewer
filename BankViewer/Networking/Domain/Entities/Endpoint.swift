@@ -16,7 +16,7 @@ protocol Endpoint {
 }
 
 extension Endpoint {
-    var queryItems: [URLQueryItem]? { nil }
+    var queryItems: [URLQueryItem] { [] }
     var requestBody: Data? { nil }
     
     var headers: [String: String] {
