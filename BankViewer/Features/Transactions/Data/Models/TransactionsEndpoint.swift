@@ -11,10 +11,10 @@ struct TransactionsListEndpoint: Endpoint {
     let accountId: String
     let page: Int
     let size: Int
-    let sort: String
-    let order: String
-    let dateFrom: String
-    let dateTo: String
+    let sort: String?
+    let order: String?
+    let dateFrom: String?
+    let dateTo: String?
     let filter: String?
 
     let httpMethod: HTTPMethod = .get
@@ -27,12 +27,24 @@ struct TransactionsListEndpoint: Endpoint {
         var items: [URLQueryItem] = [
             URLQueryItem(name: "page", value: "\(page)"),
             URLQueryItem(name: "size", value: "\(size)"),
-            URLQueryItem(name: "sort", value: sort),
-            URLQueryItem(name: "order", value: order),
-            URLQueryItem(name: "dateFrom", value: dateFrom),
-            URLQueryItem(name: "dateTo", value: dateTo)
         ]
         
+        if let sort = sort {
+            items.append(URLQueryItem(name: "sort", value: sort))
+        }
+
+        if let order = order {
+            items.append(URLQueryItem(name: "order", value: order))
+        }
+
+        if let dateFrom = dateFrom {
+            items.append(URLQueryItem(name: "dateFrom", value: dateFrom))
+        }
+
+        if let dateTo = dateTo {
+            items.append(URLQueryItem(name: "dateTo", value: dateTo))
+        }
+
         if let filter = filter {
             items.append(URLQueryItem(name: "filter", value: filter))
         }
