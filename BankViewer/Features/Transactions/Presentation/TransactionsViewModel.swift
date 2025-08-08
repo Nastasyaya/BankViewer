@@ -16,7 +16,6 @@ final class TransactionsViewModel: ObservableObject {
     }
 
     struct Content {
-        let totalPages: Int
         let chart: TransactionCardViewModel
         let items: [AccountCardViewModel]
     }
@@ -33,11 +32,6 @@ final class TransactionsViewModel: ObservableObject {
 
     @Published private(set) var state: State = .loading
 
-    var isLoading = false
-
-    private var currentPage = 0
-    private var totalPages = 0
-
     private let dependencies: Dependencies
     private let parameters: Parameters
 
@@ -52,8 +46,6 @@ final class TransactionsViewModel: ObservableObject {
     }
 
     func onRefresh() {
-        currentPage = 0
-        
         getTransactions()
     }
 }

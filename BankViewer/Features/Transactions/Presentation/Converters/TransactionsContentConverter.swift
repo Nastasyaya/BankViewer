@@ -20,7 +20,6 @@ struct TransactionsContentConverterImp: TransactionsContentConverter {
         let chartData = sortedData.map { Int($0.amountValue) }
 
         return TransactionsViewModel.Content(
-            totalPages: domainModel.totalPages,
             chart: TransactionCardViewModel(
                 title: "Transakce",
                 subtitle: "Za měsíc",
