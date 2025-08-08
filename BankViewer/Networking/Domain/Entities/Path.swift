@@ -9,7 +9,7 @@ enum Path {
     case allAccounts
     case detailOfSpecificAccount(_ accountID: String)
     case transactionsForSpecificAccount(_ accountID: String)
-    
+
     var url: String {
         switch self {
         case .allAccounts:
