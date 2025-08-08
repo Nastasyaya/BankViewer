@@ -60,14 +60,14 @@ BankViewer/
 - **Architecture**: Clean Architecture + MVVM
 - **Dependency Injection**: Custom DI container
 - **Networking**: Custom networking layer
-- **Minimum iOS Version**: iOS 15.0+
+- **Minimum iOS Version**: iOS 18.0+
 
 ## 📦 Installation
 
 ### Prerequisites
-- Xcode 14.0 or later
-- iOS 15.0+ deployment target
-- macOS 12.0+ (for development)
+- Xcode 16.0 or later
+- iOS 18.0+ deployment target
+- macOS 15.0+ (for development)
 
 ### Setup
 1. Clone the repository:
@@ -158,7 +158,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Анастасия Кутняхова** - *Initial work* - [GitHub Profile]
+- **Anastasia Kutniakhova** - *Initial work* - [GitHub Profile]
 
 ## 🙏 Acknowledgments
 
