@@ -52,10 +52,10 @@ final class TransactionsViewModel: ObservableObject {
 
 private extension TransactionsViewModel {
     func getTransactions() {
-        dependencies.getTransactionsUseCase.callAsFunction(
+        dependencies.getTransactionsUseCase(
             query: TransactionQuery(
                 accountId: parameters.accountID,
-                page: currentPage,
+                page: 0,
                 size: 25,
                 sort: nil,
                 order: nil,
