@@ -1,5 +1,5 @@
 //
-//  GetTransactionsRepository.swift
+//  GetTransactionsRemoteRepository.swift
 //  BankViewer
 //
 //  Created by Анастасия Кутняхова on 07.08.2025.

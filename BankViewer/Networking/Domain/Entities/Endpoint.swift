@@ -21,7 +21,7 @@ extension Endpoint {
     
     var headers: [String: String] {
         return [
-//            "Accept": "application/json",
+            "Accept": "application/json",
             "WEB-API-key": APIKey.key
         ]
     }

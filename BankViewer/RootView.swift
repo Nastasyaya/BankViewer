@@ -9,12 +9,21 @@ import SwiftUI
 
 struct RootView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        AccountListView(
+            viewModel: AccountListViewModel(
+                dependencies: AccountListViewModel.Dependencies(
+                    contentConverter: AccountListContentConverterImp(),
+                    getAccountsUseCase: GetAccountsLiveUseCase(
+                        repository: GetAccountsRemoteRepository(
+                            networkRepository: NetworkingRemoteRepository.shared,
+                            converter: AccountsListResponseConverterImp()
+                        )
+                    )
+                ),
+                parameters: AccountListViewModel.Parameters(
+                    onTransactionstapped: { _ in }
+                )
+            )
+        )
     }
 }

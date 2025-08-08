@@ -10,4 +10,5 @@ struct Account: Hashable {
     let name: String
     let balance: Double
     let currency: String
+    let description: String?
 }

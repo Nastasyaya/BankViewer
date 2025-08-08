@@ -21,9 +21,10 @@ struct AccountsListResponseConverterImp: AccountsListResponseConverter {
         dto.accounts.map { account in
             Account(
                 accountID: account.accountNumber,
-                name: account.name,
-                balance: account.balance,
-                currency: account.currency
+                name: account.name ?? "unknown",
+                balance: account.balance ?? 0,
+                currency: account.currency ?? "czk",
+                description: account.description ?? nil
             )
         }
     }

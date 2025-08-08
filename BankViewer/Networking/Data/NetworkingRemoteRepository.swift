@@ -9,6 +9,8 @@ import Combine
 import SwiftUI
 
 final class NetworkingRemoteRepository: NetworkingRepository {
+    static let shared = NetworkingRemoteRepository()
+
     private init() {}
 
     func run<R: Decodable>(endpoint: Endpoint) -> AnyPublisher<R, NetworkError> {
@@ -57,6 +59,10 @@ final class NetworkingRemoteRepository: NetworkingRepository {
         request.httpMethod = endpoint.httpMethod.rawValue
         request.timeoutInterval = 10
 
+        for (headerField, headerValue) in endpoint.headers {
+            request.setValue(headerValue, forHTTPHeaderField: headerField)
+        }
+
         return request
     }
 
@@ -66,9 +72,10 @@ final class NetworkingRemoteRepository: NetworkingRepository {
 
         components.scheme = "https"
         components.host = "webapi.developers.erstegroup.com"
-        components.path = "/api/csas/public/sandbox/v3/\(endpoint.path)"
+        components.path = "/api/csas/public/sandbox/v3/\(endpoint.path.url)"
         components.queryItems = endpoint.queryItems
 
+        print("➡️ URL:", components.url?.absoluteString ?? "nil")
         return components.url
     }
 }
