@@ -11,10 +11,21 @@ struct AccountCardView: View {
     let viewModel: AccountCardViewModel
 
     var body: some View {
-        Button {
-            viewModel.onTap(viewModel.accountID)
-        } label: {
-            buttonLabel
+        content
+    }
+    
+    private var content: some View {
+        Group {
+            switch viewModel.type {
+            case .account:
+                Button {
+                    viewModel.onTap(viewModel.accountID)
+                } label: {
+                    buttonLabel
+                }
+            case .transaction:
+                buttonLabel
+            }
         }
     }
 
@@ -66,11 +77,13 @@ struct AccountCardView: View {
             Text(viewModel.currency.uppercased())
                 .font(.caption)
                 .foregroundStyle(.black)
-                .padding(.trailing, 8)
             
-            Image(systemName: "chevron.right")
-                .frame(height: 8)
-                .foregroundStyle(.black)
+            if viewModel.type == .account {
+                Image(systemName: "chevron.right")
+                    .frame(height: 8)
+                    .foregroundStyle(.black)
+                    .padding(.leading, 8)
+            }
         }
         .multilineTextAlignment(.trailing)
     }

@@ -29,7 +29,16 @@ struct BankViewerApp: App {
                         return view
                     },
                     transactionsViewBuilder: { accountID, onBackTap in
-                        EmptyView()
+                        let parameters = TransactionsViewModel.Parameters(
+                            accountID: accountID,
+                            onBack: onBackTap
+                        )
+                        let view = DIContainer.shared.resolve(
+                            identifier: TransactionsView.self,
+                            parameters: parameters
+                        )
+                        
+                        return view
                     }
                 )
             )

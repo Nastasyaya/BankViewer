@@ -16,7 +16,7 @@ struct AccountsListFlow: View {
         @ViewBuilder let transactionsViewBuilder: (
             _ accountID: String,
             _ onBackTap: @escaping () -> Void
-        ) -> EmptyView
+        ) -> TransactionsView
     }
 
     private enum Destination: Hashable {
@@ -32,6 +32,7 @@ struct AccountsListFlow: View {
             dependencies.accountsListViewBuilder { accountID in
                 path.append(.transactions(accountID))
             }
+            .navigationTitle("Účty")
             .navigationDestination(for: Destination.self) { destination in
                 switch destination {
                 case let .transactions(accountID):

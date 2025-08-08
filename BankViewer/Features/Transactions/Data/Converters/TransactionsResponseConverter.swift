@@ -29,7 +29,7 @@ struct TransactionsResponseConverterImp: TransactionsResponseConverter {
                 amountValue: transaction.amount.value,
                 currency: transaction.amount.currency,
                 processingDate: dateConverter.convert(from: transaction.processingDate) ?? .now,
-                senderName: transaction.sender.name,
+                senderName: transaction.sender.name ?? "Some Name",
                 recieverAccountNumber: transaction.receiver.accountNumber,
                 typeDescription: transaction.typeDescription
             )

@@ -9,5 +9,6 @@ enum DIAssembler {
     static func assemble() {
         assembleNetworking()
         assembleAccountsListFeature()
+        assembleTransactionsFeature()
     }
 }

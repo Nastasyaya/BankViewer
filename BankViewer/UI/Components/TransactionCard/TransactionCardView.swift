@@ -8,71 +8,26 @@
 import SwiftUI
 
 struct TransactionCardView: View {
-    let viewModel: AccountCardViewModel
+    let viewModel: TransactionCardViewModel
 
     var body: some View {
-        Button {
-            viewModel.onTap(viewModel.accountID)
-        } label: {
-            buttonLabel
-        }
+        makeContent()
     }
 
-    private var buttonLabel: some View {
-        HStack(spacing: .zero) {
-            titleSection
-
-            Spacer()
-
-            currencySection
-        }
-        .padding()
-        .background {
-            background
-        }
-    }
-    
-    private var background: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .foregroundStyle(.customBackground)
-            .shadow(color: .black, radius: 0.4)
-    }
-    
-    private var titleSection: some View {
-        VStack(alignment: .leading, spacing: .zero) {
-            Text(viewModel.name)
+    private func makeContent() -> some View {
+        VStack(spacing: .zero) {
+            Text(viewModel.title)
                 .font(.headline)
-                .foregroundStyle(.black)
-                .lineLimit(3)
+                .foregroundStyle(.customPrimary)
             
-            if let description = viewModel.description {
-                Text(description)
-                    .font(.subheadline)
-                    .foregroundStyle(.customSecondary)
-                    .lineLimit(1)
-                    .padding(.top)
-            }
-        }
-        .multilineTextAlignment(.leading)
-    }
-    
-    private var currencySection: some View {
-        HStack(spacing: .zero) {
-            Text(viewModel.balance)
+            ChartView(viewModel: viewModel.chartData)
+                .padding(.vertical, 20)
+            
+            Text(viewModel.subtitle)
                 .font(.caption)
-                .foregroundStyle(.black)
-                .padding(.trailing, 6)
-            
-            Text(viewModel.currency.uppercased())
-                .font(.caption)
-                .foregroundStyle(.black)
-                .padding(.trailing, 8)
-            
-            Image(systemName: "chevron.right")
-                .frame(height: 8)
-                .foregroundStyle(.black)
+                .foregroundStyle(.customSecondary)
         }
-        .multilineTextAlignment(.trailing)
+        .multilineTextAlignment(.center)
     }
 }
 

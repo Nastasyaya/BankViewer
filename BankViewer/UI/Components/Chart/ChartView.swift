@@ -37,6 +37,11 @@ struct ChartView: View {
                         )
                     )
             }
+            .onAppear {
+                withAnimation {
+                    percentage = 1
+                }
+            }
         }
     }
     

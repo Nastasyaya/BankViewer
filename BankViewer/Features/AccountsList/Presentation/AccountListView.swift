@@ -33,7 +33,11 @@ struct AccountListView: View {
     }
 
     private var loadingView: some View {
-        ProgressView()
+        ZStack {
+            Color.customBackground.ignoresSafeArea()
+
+            ProgressView()
+        }
     }
     
     private var errorView: some View {

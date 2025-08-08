@@ -8,10 +8,7 @@
 import Foundation
 
 struct TransactionCardViewModel {
-    let amountValue: Double
-    let currency: String
-    let processingDate: Date
-    let senderName: String
-    let recieverAccountNumber: String
-    let typeDescription: String
+    let title: String
+    let subtitle: String
+    let chartData: ChartViewModel
 }

@@ -17,11 +17,13 @@ final class TransactionsViewModel: ObservableObject {
 
     struct Content {
         let totalPages: Int
-        let items: [TransactionCardViewModel]
+        let chart: TransactionCardViewModel
+        let items: [AccountCardViewModel]
     }
     
     struct Parameters {
         let accountID: String
+        let onBack: () -> Void
     }
 
     struct Dependencies {
@@ -38,32 +40,17 @@ final class TransactionsViewModel: ObservableObject {
 
     private let dependencies: Dependencies
     private let parameters: Parameters
-    private let onBack: () -> Void
 
     init(
         dependencies: Dependencies,
-        parameters: Parameters,
-        onBack: @escaping () -> Void
+        parameters: Parameters
     ) {
         self.dependencies = dependencies
         self.parameters = parameters
-        self.onBack = onBack
-        
+
         getTransactions()
     }
-    
-//    func loadNextPage(accountID: String) {
-//        guard canLoadNextPage(accountID: accountID) else { return }
-//        
-//        isLoading = true
-//
-//        currentPage += 1
-//
-//        getTransactions()
-//
-//        isLoading = false
-//    }
-    
+
     func onRefresh() {
         currentPage = 0
         
@@ -94,63 +81,3 @@ private extension TransactionsViewModel {
         .assign(to: &$state)
     }
 }
-
-//// MARK: - GetAccounts
-//private extension AccountListViewModel {
-//    func getAccounts() {
-//        dependencies.getAccountsUseCase(
-//            page: currentPage,
-//            size: 50,
-//            filter: nil
-//        )
-//        .compactMap { [weak self] response in
-//            self?.totalPages = response.totalPages
-//
-//            let newItems = self?.dependencies.contentConverter.convert(
-//                domainModel: response,
-//                onCardTapped: { [weak self] accountID in
-//                    self?.parameters.onTransactionstapped(accountID)
-//                }
-//            )
-//
-//            let existingItems: [AccountCardViewModel]
-//
-//            if case let .content(content) = self?.state {
-//                existingItems = content.items
-//            } else {
-//                existingItems = []
-//            }
-//
-//            let combinedItems: [AccountCardViewModel]
-//
-//            if let new = newItems?.items {
-//                combinedItems = existingItems + new
-//            } else {
-//                combinedItems = existingItems
-//            }
-//
-//            return Content(totalPages: response.totalPages, items: combinedItems)
-//        }
-//        .map { .content($0) }
-//        .replaceError(with: .error)
-//        .receive(on: DispatchQueue.main)
-//        .assign(to: &$state)
-//    }
-//}
-//
-//// MARK: - Pagination
-//private extension AccountListViewModel {
-//    func canLoadNextPage(accountID: String) -> Bool {
-//        guard case .content = state,
-//              isLast(accountID: accountID),
-//              !isLoading,
-//              currentPage < totalPages else { return false }
-//
-//        return true
-//    }
-//
-//    func isLast(accountID: String) -> Bool {
-//        guard case let .content(content) = state else { return false }
-//        return content.items.last?.accountID == accountID
-//    }
-//}
