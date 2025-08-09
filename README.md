@@ -6,7 +6,6 @@ A modern iOS banking application built with SwiftUI that allows users to view th
 
 ### Account Management
 - **Account List**: View all your bank accounts with balance information
-- **Account Details**: See account name, balance, currency, and description
 - **Pull-to-Refresh**: Refresh account data with a simple swipe gesture
 - **Infinite Scrolling**: Load more accounts as you scroll through the list
 
@@ -14,7 +13,6 @@ A modern iOS banking application built with SwiftUI that allows users to view th
 - **Transaction List**: Browse through your transaction history
 - **Transaction Details**: View transaction amounts, dates, sender/receiver information
 - **Interactive Charts**: Visual representation of transaction data
-- **Search & Filter**: Find specific transactions easily
 
 ### User Experience
 - **Modern UI**: Clean, intuitive interface built with SwiftUI
